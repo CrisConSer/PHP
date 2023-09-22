@@ -48,7 +48,7 @@
         <th style =\"color : green; font-size: 35px\">pencil</th>
       </tr>
       <tr>
-        <th style = \"font-size: 35px\">ganar</th>
+        <th style = \"font-size: 35px\">equipo</th>
         <th style =\"color : green; font-size: 35px\">team</th>
         </tr>
     </table>";  
