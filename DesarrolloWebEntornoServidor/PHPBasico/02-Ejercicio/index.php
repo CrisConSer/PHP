@@ -11,7 +11,7 @@
   
   <?php
 
-  // Para poner estilos dentro el echo hay que usar \" xxxxx \*
+  // Para poner estilos dentro el echo hay que usar \" xxxxx \"*
   echo "<h3 style = \"background-color : green; color : white;\">Mi nombre es Cris </h3>"; 
   echo "<h2>Mi número de teléfono es 651143850 </h2>";
   echo "<h2 style = \"background-color : green; color : white;\">Mi dirección es C/Conan Doyle </h2>";
