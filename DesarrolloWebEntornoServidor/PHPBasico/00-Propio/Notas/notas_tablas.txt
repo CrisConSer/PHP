@@ -1,0 +1,56 @@
+
+<table>: La etiqueta <table> define una tabla HTML. Es el contenedor principal de toda la tabla.
+
+html
+Copy code
+<table border="1">
+    <!-- Contenido de la tabla aquí -->
+</table>
+
+
+<tr>: La etiqueta <tr> define una fila en la tabla. Las filas deben estar dentro de una tabla (<table>) y pueden contener celdas (<td>) y encabezados de tabla (<th>).
+
+html
+Copy code
+<tr>
+    <!-- Contenido de la fila aquí -->
+</tr>
+
+
+<th>: La etiqueta <th> define una celda de encabezado en la tabla. Se utiliza para las celdas de encabezado en una fila o columna de la tabla.
+
+html
+Copy code
+<tr>
+    <th>Encabezado 1</th>
+    <th>Encabezado 2</th>
+    <!-- Más encabezados si es necesario -->
+</tr>
+
+
+<td>: La etiqueta <td> define una celda estándar en la tabla. Se utiliza para las celdas regulares que contienen datos.
+
+html
+Copy code
+<tr>
+    <td>Dato 1</td>
+    <td>Dato 2</td>
+    <!-- Más datos si es necesario -->
+</tr>
+El uso de <th> y <td> es similar, pero los <th> suelen usarse para las celdas de encabezado, mientras que los <td> se utilizan para las celdas regulares de datos.
+
+Aquí tienes un ejemplo de cómo se vería una tabla básica con dos filas y dos columnas:
+
+html
+Copy code
+<table border="1">
+    <tr>
+        <th>Encabezado 1</th>
+        <th>Encabezado 2</th>
+    </tr>
+    <tr>
+        <td>Dato 1</td>
+        <td>Dato 2</td>
+    </tr>
+</table>
+Puedes ajustar los estilos y los atributos según tus necesidades para personalizar aún más la apariencia de la tabla.
