@@ -1,0 +1,135 @@
+1.- pagina para ingresar el usuario y Contraseña en un formulario html y validará un php
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>INICIAR SERSION</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="estilo.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div id = "sesion" style="display: block;">
+      <h2>Iniciar Sesión</h2>
+      <form action="login.php" method="post">
+        Usuario: <input type="text" name="usuario" id="usuario">
+        <br><br>
+        Contraseña: <input type="password" name="password" id="password">
+        <br><br>
+        <input type="submit" name="Enviar" value="Enviar"> 
+        <p>¿No tienes cuenta?</p>
+        <a href="registro.php">Registrate</a>   
+      </form>  
+    </div>
+      
+    
+  
+  </body>
+</html>
+
+<?php
+session_start();
+
+
+if(isset($_POST['Enviar'])){
+  if(isset($_POST['usuario']) && isset($_POST['password'])){
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
+    // Verifica si el usuario y la contraseña son correctos
+    if($usuario === "admin" && $password === "admin"){
+    header("Location:contenido.php");
+    exit();
+  }else{
+    header("Location:registro.php");
+    exit();
+  };
+}else{
+  header("Location:registro.php");
+  exit();
+  };
+}; 
+  
+
+
+?>
+
+2.- Pagina para registrarse, con un formulario html y página que valida al html con un php<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>REGISTRAR USUARIO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="estilo2.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div id = "registro" style="display: block;">
+      <h2>Registro Usuarios</h2>
+      <form action="registro.php" method="post">
+        Usuario: <input type="text" name="usuario" id="usuario">
+        <br><br>
+        Contraseña: <br><input type="password" name="password" id="password">
+        <br><br>
+        <input type="submit" name="Enviar" value="Registrar">  
+      </form>    
+    </div>  
+  
+  </body>
+</html>
+
+<?php
+if(isset($_POST['usuario']) && isset($_POST['password'])) {
+    // Realiza la validación de los datos ingresados, por ejemplo, longitud mínima de contraseña, caracteres permitidos, etc.
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
+
+    // Asegúrate de usar métodos seguros para almacenar la contraseña en la base de datos, por ejemplo, usando funciones de hash como password_hash()
+    // Ejemplo básico de cómo almacenar los datos en un archivo de texto
+    $file = 'usuarios.txt'; // Cambia esto por el nombre de tu base de datos o archivo de almacenamiento
+
+    // Abre el archivo en modo escritura
+    $fp = fopen($file, 'a');
+    if($fp) {
+        fwrite($fp, "Usuario: " . $usuario . " - Contraseña: " . $password . "\n");
+        fclose($fp);
+        echo "Registro exitoso. <a href='login.php'>Inicia sesión</a>";
+    } else {
+        echo "Error al abrir el archivo de registro.";
+    }
+} else {
+    echo "Por favor, complete todos los campos del formulario de registro.";
+}
+?>
+
+3.- Una vez registrado el usuario y contraseña deberá entrar al contenido
+<?php
+session_start();
+
+echo "Hola esta es la página de contenido que visualizo al iniciar sesión";
+
+?>
+
+<a href="cerrarsesion.php">Cerrar sesion </a>
+
+4.- Cerrar sesión, pinhar en cerrar sesión y destruirá la sesesión y nos lanzará la pagina de formulario.html
+para poder iniciar nuevamente el circuito
+<? session_start();?>
+<?
+/**
+ * En esta página se encuentra el código necesario 
+ * para cerrar la sesión y eliminar la información 
+ * que haya almacenada en la sesión.
+ * 
+ * 
+ * Autor: Nombre Apellidos
+ * 
+ */
+
+session_destroy();
+$_SESSION = array ();
+?>
+
+<a href="login.php"></a>
+
+
+
