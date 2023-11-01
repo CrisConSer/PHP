@@ -18,7 +18,7 @@ if(isset($_POST['usuario']) && isset($_POST['password'])) {
         echo "Error al abrir el archivo de registro.";
     }
 } else {
-    echo "Te has registrado de forma correcta. " . "<br>" . "El usuario ingresado no tiene permisos para entrar en este contenido.";
+    echo "No estás registrado de forma correcta. " . "<br>" . "El usuario ingresado no tiene permisos para entrar en este contenido.";
     }
 ?>
 <br><br>

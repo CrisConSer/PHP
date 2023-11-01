@@ -12,10 +12,8 @@ if(isset($_POST['Enviar'])){
     } else {
       header("Location:registro.php");
       exit();
-    }
-  } else {
-    header("Location:registro.php");
-    exit();
-  }
-}
+    };
+  };
+};
+    
 ?>
