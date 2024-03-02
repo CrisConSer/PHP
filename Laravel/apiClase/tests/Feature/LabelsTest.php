@@ -8,17 +8,26 @@ use Tests\TestCase;
 class LabelsTest extends TestCase
 {
     use RefreshDatabase;
-    public function test_get_Labels()
+
+    /**
+     * Test para obtener las etiquetas.
+     *
+     * @return void
+     */
+    public function test_get_labels()
     {
-        $task = new Labels();
-        $task->nombre = "testNombre";
-        $task->save();
-        $response = $this->getJson('api/Labels');
-        $response->assertStatus(200);
-        $response->assertJsonFragment([
-            'id' => $task->id,
-            'nombre' => 'Nombre: ' . $task->nombre
-        ]);
+        // Crear una etiqueta de ejemplo en la base de datos
+        $label = Labels::factory()->create(['nombre' => 'Ejemplo']);
+
+        // Realizar la solicitud para obtener las etiquetas
+        $response = $this->getJson('api/labels');
+
+        // Asegurarse de que la solicitud sea exitosa y la etiqueta esté presente en la respuesta
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'id' => $label->id,
+                'nombre' => $label->nombre
+            ]);
     }
     public function test_create_Labels()
     {

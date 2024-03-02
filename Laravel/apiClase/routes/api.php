@@ -14,7 +14,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('/task', TaskController::class);
+    // Rutas para el controlador TaskController
+    Route::resource('task', TaskController::class);
+    // Rutas adicionales para el controlador TaskController
     Route::get('logout', [AuthController::class, 'logout']);
+
+    // Rutas para el controlador LabelsController
     Route::resource('labels', LabelsController::class);
 });
