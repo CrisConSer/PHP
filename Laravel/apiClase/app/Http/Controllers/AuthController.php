@@ -26,19 +26,17 @@ class AuthController extends Controller
     }
     public function logout(){
         auth()->user()->tokens()->delete();
-        return ['message'=> 'Sesión creada correctamente'];
+        return ['message'=> 'Sesión cerrada correctamente'];
     }
 
     public function login(Request $request)
-    {
-          $user=User::where('email',$request->email)
-        //  ->where('password',$request->password)
-        ->firstOrFail();
-          $token=$user->createToken('auth_token')->plainTextToken;
-          return response()->json(['message'=>'hola'.$user->name,
-          
-           'acces_token'=>$token,
-           'token_type'=>'Bearer'] );
-         
-    }
+{
+    $user = User::where('email', $request->email)->firstOrFail();
+    $token = $user->createToken('auth_token')->plainTextToken;
+    return response()->json([
+        'message' => '¡Hola, ' . $user->name . '!',
+        'access_token' => $token,
+        'token_type' => 'Bearer'
+    ]);
+}
 }

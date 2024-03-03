@@ -13,12 +13,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    // Rutas para el controlador TaskController
-    Route::resource('task', TaskController::class);
-    // Rutas adicionales para el controlador TaskController
-    Route::get('logout', [AuthController::class, 'logout']);
+// Rutas para las etiquetas (labels)
+Route::middleware('auth:sanctum')->post('/labels', [LabelsController::class, 'store']);
+Route::middleware('auth:sanctum')->get('/labels', [LabelsController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/labels/{id}', [LabelsController::class, 'show']);
+Route::middleware('auth:sanctum')->put('/labels/{id}', [LabelsController::class, 'update']);
+Route::middleware('auth:sanctum')->delete('/labels/{id}', [LabelsController::class, 'destroy']);
 
-    // Rutas para el controlador LabelsController
-    Route::resource('labels', LabelsController::class);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('tasks', TaskController::class); 
+    Route::get('logout', [AuthController::class, 'logout']);
 });

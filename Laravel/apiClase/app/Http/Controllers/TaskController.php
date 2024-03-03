@@ -66,21 +66,17 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(TaskRequest $request, $id): JsonResource
-    {
+    public function update(TaskRequest $request, $id)
+{
+    $task = Task::findOrFail($id);
+    $task->labels()->detach();
+    $task->titulo = $request->titulo;
+    $task->descripcion = $request->descripcion;
+    $task->save();
+    $task->labels()->attach($request->labels);
+    return new TaskResource($task);
+}
 
-        $Task = Task::find($id);
-        $Task->labels()->detach();
-        $Task->titulo = $request->titulo;
-        $Task->descripcion = $request->descripcion;
-        $Task->labels()->attach($request->etiquetas);
-        $Task->save();
-
-
-
-        return new TaskResource($Task);
-
-    }
 
     /**
      * Remove the specified resource from storage.

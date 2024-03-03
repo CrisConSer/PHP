@@ -25,15 +25,16 @@ class LabelsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(LabelsRequest $request)
-    {
+    public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'nombre' => 'required|string|max:255', 
+    ]);
 
-        $params = $request->all();
-     
-        $Labels=Labels::create($params);
-        return response()->json($Labels, 201);
-            
-    }
+    $label = Labels::create($validatedData);
+
+    return response()->json(['data' => $label], 201);
+}
 
 
     /**
@@ -80,18 +81,12 @@ return new LabelsResource($Labels);
     
 
 
-public function destroy($id)
-{
-    try {
-        $Labels = Labels::findOrFail($id); 
+    public function destroy($id)
+    {
+        $label = Labels::findOrFail($id); 
         // Desvincula todas las relaciones de las tareas antes de eliminar la etiqueta
-        $Labels->task()->detach(); 
-        $Labels->delete(); 
-        return response()->json(['message' => 'Labels eliminada correctamente'], 200);
-    } catch (\Exception $e) {
-        return response()->json(['message' => 'No se pudo eliminar la Labels', 'error' => $e->getMessage()], 500);
+        $label->tasks()->detach(); 
+        $label->delete(); 
+        return response()->json(['message' => 'Etiqueta eliminada correctamente'], 200);
     }
-}
-
-    
 }
