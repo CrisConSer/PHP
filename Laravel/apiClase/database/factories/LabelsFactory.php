@@ -2,22 +2,29 @@
 
 namespace Database\Factories;
 
+use App\Models\Labels;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Labels>
- */
 class LabelsFactory extends Factory
 {
     /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Labels::class;
+
+    /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            // Define aquí los campos y valores predeterminados para el modelo
+            'nombre' => $this->faker->word,
+            // Otros campos si los hay
         ];
     }
 }
