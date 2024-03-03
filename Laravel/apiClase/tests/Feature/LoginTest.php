@@ -46,14 +46,14 @@ class LoginTest extends TestCase
             'password' => 'pokemon123',
         ]);
         $response->assertStatus(200);
-        $response->assertJsonStructure(['acces_token']);
+        $response->assertJsonStructure(['access_token']);
     }
-    public function testLogout()
-    {
-        $user = User::factory()->create();
-        Sanctum::actingAs($user);
-        $response = $this->postJson('/api/logout');
-        $response->assertStatus(200);
-        $this->assertCount(0, $user->tokens);
-    }
+    public function test_logout()
+{
+    $user = User::factory()->create();
+    Sanctum::actingAs($user);
+    $response = $this->postJson('/api/logout');
+    $response->assertStatus(200);
+    $this->assertCount(0, $user->tokens);
+}
 }
