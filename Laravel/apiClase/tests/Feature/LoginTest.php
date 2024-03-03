@@ -36,7 +36,7 @@ class LoginTest extends TestCase
 
         $response = $this->postJson('api/login', $loginData);
         $response->assertStatus(200)
-                ->assertJsonStructure(['message', 'acces_token', 'token_type']);
+                ->assertJsonStructure(['message', 'access_token', 'token_type']);
     }
 
     public function test_logout_user()
@@ -50,8 +50,5 @@ class LoginTest extends TestCase
         $response->assertStatus(200)
                 ->assertJson(['message' => 'Sesión cerrada correctamente']);
     }
-
-
-
 
 }
